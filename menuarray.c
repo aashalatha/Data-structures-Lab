@@ -1,9 +1,21 @@
 #include<stdio.h>
 #include<stdlib.h>
-int main()
+int arr[10],n;
+void printarray(int arr[]);
+
+void printarray(int arr[])
+{
+ int i;
+ for(i=0;i<n;i++)
+ {
+  printf("%d ",*arr+i);
+ }
+}
+
+void main()
 {
 
-int arr[10],i,n,ch,item,pos,flag=0;
+int i,ch,item,pos,flag=0;
 char y;
 
 printf("Enter the array limit:");
@@ -14,11 +26,6 @@ for(i=0;i<n;i++)
 scanf("%d",arr+i);
 }
 
-printf("\nThe array elements are:");
-for(i=0;i<n;i++)
-{
-printf("%d ",*arr+i);
-}
 while(1)
 {
 printf("\n\nARRAY OPERATIONS\n");
@@ -42,10 +49,7 @@ switch(ch)
 	 }
 	 arr[pos]=item;
 	 printf("\nThe new array is:");
-	 for(i=0;i<=n;i++)
-	 {
-	 printf("%d ",arr[i]);
-	 }
+	 printarray(arr);
 	 break;
 	}
 
@@ -61,12 +65,10 @@ switch(ch)
 	   arr[i]=arr[i+1];
 	  }
 	 }
+	 n--;
 	 printf("\nThe new array is:");
-	 for(i=0;i<n-1;i++)
-	 {
-	  printf("%d",arr[i]);
-	 }
-	break;
+	 printarray(arr);
+	 break;
 	}
 	
 case 3:
