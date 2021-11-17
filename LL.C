@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<conio.h>
+#include<stdlib.h>
 void getlist(int);              //function declaration
 void printlist();
 
@@ -44,7 +44,7 @@ void main()
 {
 int i,pos,x,ch,size=0;
 char choice;
-clrscr();
+
 head=(struct node *)malloc(sizeof(struct node));
 temp=head;
 printf("Enter the elements(enter -999 to stop):");
@@ -145,6 +145,10 @@ scanf("%d",&ch);
 	 printlist();
 	 break;
 	}
+ case 5:
+	{
+	 exit(0);
+	}
  default:
 	{
 	 printf("\nInvalid Choice!!!");
@@ -152,7 +156,7 @@ scanf("%d",&ch);
 	}
  }
 printf("\nDo you want to continue?(Press y/n):");
-scanf("%c",&choice);
+scanf(" %c",&choice);
 }while(choice=='y');
 getch();
 }
