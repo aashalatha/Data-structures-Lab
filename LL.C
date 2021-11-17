@@ -9,6 +9,7 @@ struct node                     //global declaration
 	struct node *next;
 	};
 struct node *head,*new,*temp,*prev;
+int size=0;
 
 void getlist(int m)             //function to get linked list
 {
@@ -104,7 +105,7 @@ scanf("%d",&ch);
 	scanf("%d",&x);
 	printf("\nEnter the position to be inserted:");
 	scanf("%d",&pos);
-
+	size++;
 	temp=head;
 	if(pos<1||pos>size+1)
 	{
