@@ -158,5 +158,4 @@ scanf("%d",&ch);
 printf("\nDo you want to continue?(Press y/n):");
 scanf(" %c",&choice);
 }while(choice=='y');
-getch();
 }
