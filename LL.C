@@ -63,7 +63,7 @@ printf("\nEnter your choice:");
 scanf("%d",&ch);
  switch(ch)
  {
- case 1:
+ case 1:							#insertion at beginning
 	{
 	 printf("\n1.Insert at beginning");
 	 new = (struct node*)malloc(sizeof(struct node));
@@ -76,10 +76,9 @@ scanf("%d",&ch);
 	 printlist();
 	 break;
 	}
- case 2:
+ case 2:							#insertion at end
 	{
 	printf("\n2.Insertion at end");
-
 	new = (struct node*)malloc(sizeof(struct node));
 	printf("\nEnter the element to be inserted:");
 	scanf("%d",&x);
@@ -97,7 +96,7 @@ scanf("%d",&ch);
 	printlist();
 	break;
 	}
- case 3:
+ case 3:							#insertion at any position
 	{
 	printf("\n3.Insertion at any position");
 	new = (struct node*)malloc(sizeof(struct node));
@@ -128,7 +127,7 @@ scanf("%d",&ch);
 	printlist();
 	break;
 	}
- case 4:
+ case 4:							#deletion of any node
 	{
 	 printf("\n4.Delete a node");
 	 new = (struct node*)malloc(sizeof(struct node));
@@ -145,7 +144,7 @@ scanf("%d",&ch);
 	 printlist();
 	 break;
 	}
- case 5:
+ case 5:							#exit the program
 	{
 	 exit(0);
 	}
