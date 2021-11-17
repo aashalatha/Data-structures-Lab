@@ -145,7 +145,7 @@ scanf("%d",&ch);
 	 printlist();
 	 break;
 	}
- case 5:							#exit the program
+ case 5:							#exits the program
 	{
 	 exit(0);
 	}
