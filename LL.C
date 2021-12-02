@@ -43,7 +43,7 @@ void printlist()           	//function to print linked list
 
 void main()
 {
-int i,pos,x,ch,size=0;
+int i,pos,x,ch;
 char choice;
 
 head=(struct node *)malloc(sizeof(struct node));
