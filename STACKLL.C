@@ -1,6 +1,6 @@
 #include<stdio.h>
-#include<conio.h>
-void push(int);
+#include<stdlib.h>
+void push(int);						//function declaration
 int pop();
 void status();
 
@@ -11,26 +11,25 @@ struct node
 	};
 struct node *head,*new,*temp,*prev;
 
-void push(int x)
+void push(int x)					//function to push the element to the stack
 {
  new = (struct node*)malloc(sizeof(struct node));
+ new->data=x;
  if(head==NULL)
  {
-  new->data=x;
   new->next=NULL;
   head=new;
  }
  else
  {
-  new->data=x;
   new->next=head;
   head=new;
  }
  printf("\nInserted!!!");
 }
 
-int pop()
-{
+int pop()						//function to pop the element from the stack
+{	
  int item;
  if(head==NULL)
  {
@@ -48,7 +47,7 @@ int pop()
  }
 }
 
-void status()
+void status()						//function to print the elements of the stack			
 {
  temp=head;
  if(temp==NULL)
@@ -68,10 +67,7 @@ void status()
 
 void main()
 {
-int i,x,pos,ch;
-clrscr();
-head=(struct node *)malloc(sizeof(struct node));
-temp=head;
+int i,x,pos,ch; 
 
 while(1)
 {
