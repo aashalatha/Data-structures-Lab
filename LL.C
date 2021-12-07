@@ -1,17 +1,23 @@
 #include<stdio.h>
-#include<conio.h>
-void getlist(int);              //function declaration
+#include<stdlib.h>
+void getlist(int);            					  //function declaration
 void printlist();
+void insbegin();
+void insend();
+void inspos();
+void delbegin();
+void delend();
+void delany();
 
-struct node                     //global declaration
+struct node                  				          //global declaration
 	{
 	int data;
 	struct node *next;
 	};
 struct node *head,*new,*temp,*prev;
-int size=0;
+int size=0,x;
 
-void getlist(int m)             //function to get linked list
+void getlist(int m)            					 //function to get linked list
 {
  while(temp!=NULL)
  {
@@ -32,7 +38,7 @@ void getlist(int m)             //function to get linked list
  }
 }
 
-void printlist()           	//function to print linked list
+void printlist()           					//function to print linked list
 {
  int size=0;
  temp=head;
@@ -43,13 +49,125 @@ void printlist()           	//function to print linked list
  }
 }
 
+void insbegin()							//function to insert to the beginning of a linked list
+{
+printf("\n1.Insert at beginning");
+new = (struct node*)malloc(sizeof(struct node));
+printf("\nEnter the element to be inserted:");
+scanf("%d",&x);
+new->data=x;
+new->next=head;
+head=new;
+size++;
+printf("The new linked list is:");
+printlist();
+}
+
+void insend()							//function to insert to the end of a linked list
+{
+printf("\n2.Insertion at end");
+new = (struct node*)malloc(sizeof(struct node));
+printf("\nEnter the element to be inserted:");
+scanf("%d",&x);
+
+temp=head;
+while(temp->next!=NULL)
+{
+ temp=temp->next;
+}
+new->data=x;
+new->next=NULL;
+temp->next=new;
+size++;
+printf("The new linked list is:");
+printlist();
+}
+
+void inspos()							//function to insert at any position in a linked list
+{
+int pos,i;
+printf("\n3.Insertion at any position");
+new = (struct node*)malloc(sizeof(struct node));
+printf("\nEnter the new element to be inserted:");
+scanf("%d",&x);
+printf("\nEnter the position to be inserted:");
+scanf("%d",&pos);
+temp=head;
+if(pos<1||pos>size+1)
+{
+ printf("Invalid Positiion!");
+}
+else
+{
+ for(i=2;i<pos;i++)
+ {
+  if(temp->next!=NULL)
+  {
+   temp=temp->next;
+  }
+ }
+ new->data=x;
+ new->next=temp->next;
+ temp->next=new;
+}
+size++;
+printf("\nThe new linked list is:");
+printlist();
+}
+
+void delbegin()							//function to delete from the beginning of a linked list
+{
+printf("\n4.Delete at beginning");
+prev=head;
+head=head->next;
+free(prev);
+size--;
+printf("\nThe new linked list after deletion:");
+printlist();
+}
+
+void delend()							//function to delete from the end of a linked list
+{
+printf("\n5.Delete at end");
+temp=head;
+while(temp->next->next!=NULL)
+{
+ temp=temp->next;
+}
+prev=temp->next;
+temp->next=NULL;
+free(prev);
+size--;
+printf("\nThe new linked list after deletion:");
+printlist();
+}
+
+void delany()							//function to delete any node in a linked list
+{
+printf("\n6.Delete any node");
+printf("\nEnter the element to be deleted:");
+scanf("%d",&x);
+temp=head;
+while(temp->next->data!=x)
+{
+ temp=temp->next;
+}
+prev=temp->next;
+temp->next=temp->next->next;
+free(prev);
+size--;
+printf("The new linked list is:");
+printlist();
+}
+
 void main()
 {
-int i,pos,x,ch;
+int ch;
 char choice;
-clrscr();
+
 head=(struct node *)malloc(sizeof(struct node));
 temp=head;
+
 printf("Enter the elements(enter -999 to stop):");
 getlist(x);
 printf("The elements are=");
@@ -70,109 +188,32 @@ scanf("%d",&ch);
  {
  case 1:
 	{
-	 printf("\n1.Insert at beginning");
-	 new = (struct node*)malloc(sizeof(struct node));
-	 printf("\nEnter the element to be inserted:");
-	 scanf("%d",&x);
-	 new->data=x;
-	 new->next=head;
-	 head=new;
-	 size++;
-	 printf("The new linked list is:");
-	 printlist();
+	 insbegin();
 	 break;
 	}
  case 2:
 	{
-	printf("\n2.Insertion at end");
-
-	new = (struct node*)malloc(sizeof(struct node));
-	printf("\nEnter the element to be inserted:");
-	scanf("%d",&x);
-
-	temp=head;
-	while(temp->next!=NULL)
-	{
-	 temp=temp->next;
-	}
-
-	new->data=x;
-	new->next=NULL;
-	temp->next=new;
-	size++;
-	printf("The new linked list is:");
-	printlist();
+	insend();
 	break;
 	}
  case 3:
 	{
-	printf("\n3.Insertion at any position");
-	new = (struct node*)malloc(sizeof(struct node));
-	printf("\nEnter the new element to be inserted:");
-	scanf("%d",&x);
-	printf("\nEnter the position to be inserted:");
-	scanf("%d",&pos);
-	temp=head;
-	if(pos<1||pos>size+1)
-	{
-	 printf("Invalid Positiion!");
-	}
-	else
-	{
-	 for(i=2;i<pos;i++)
-	 {
-	  if(temp->next!=NULL)
-	  {
-	   temp=temp->next;
-	  }
-	 }
-	 new->data=x;
-	 new->next=temp->next;
-	 temp->next=new;
-	}
-	size++;
-	printf("\nThe new linked list is:");
-	printlist();
+	inspos();
 	break;
 	}
  case 4:
 	{
-	 printf("\n4.Delete at beginning");
-	 head=head->next;
-	 size--;
-	 printf("\nThe new linked list after deletion:");
-	 printlist();
+	 delbegin();
 	 break;
 	}
  case 5:
 	{
-	 printf("\n5.Delete at end");
-	 temp=head;
-	 while(temp->next->next!=NULL)
-	 {
-	  temp=temp->next;
-	 }
-	 temp->next=NULL;
-	 size--;
-	 printf("\nThe new linked list after deletion:");
-	 printlist();
+	 delend();
 	 break;
 	}
  case 6:
 	{
-	 printf("\n6.Delete any node");
-	 printf("\nEnter the element to be deleted:");
-	 scanf("%d",&x);
-
-	 temp=head;
-	 while(temp->next->data!=x)
-	 {
-	  temp=temp->next;
-	 }
-	 temp->next=temp->next->next;
-	 size--;
-	 printf("The new linked list is:");
-	 printlist();
+	 delany();
 	 break;
 	}
  default:
@@ -184,5 +225,4 @@ scanf("%d",&ch);
 printf("\nDo you want to continue?(Press y/n):");
 scanf(" %c",&choice);
 }while(choice=='y'|| choice=='Y');
-getch();
- }
+}
