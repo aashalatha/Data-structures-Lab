@@ -9,54 +9,53 @@ struct node
 	int data;
 	struct node *next;
 	};
-struct node *head,*new,*temp,*prev;
+struct node *front=NULL,*rear=NULL,*temp;
 
-void enqueue(int x)					//function to insert the element to the queue
+void enqueue(int x)					//function to insert the element to the circular queue
 {
- new = (struct node*)malloc(sizeof(struct node));
+ struct node *new=(struct node *)malloc(sizeof(struct node));
  new->data=x;
- if(head==NULL)
+ new->next=NULL;
+ if((front==NULL)&&(rear==NULL))
  {
-  new->next=NULL;
-  head=new;
+  front=rear=new;
  }
  else
  {
-  temp=head;
-  while(temp->next!=NULL)
-  {
-   temp=temp->next;
-  }
-  new->data=x;
-  new->next=NULL;
-  temp->next=new;
+  rear->next=new;
+  rear=new;
  }
  printf("\nInserted!!!");
 }
 
-int dequeue()						//function to delete the element to the queue
-{	
+int dequeue()						//function to delete the element to the circular queue
+{
  int item;
- if(head==NULL)
+ temp=front;
+ if(front==NULL && rear==NULL)
  {
   printf("\nUnderflow!!!");
   return 0;
  }
+ else if(front==rear)
+ {
+  item=front->data;
+  front=rear=NULL;
+  return item;
+ }
  else
  {
-  item=head->data;
-  prev=head;
-  head=head->next;
-  free(prev);
-  printf("\nItem deleted:");
+  front=front->next;
+  item=temp->data;
+  free(temp);
   return item;
  }
 }
 
-void display()						//function to print the elements of the queue			
+void display()						//function to print the elements of the circular queue
 {
- temp=head;
- if(temp==NULL)
+ temp=front;
+ if(front==NULL && rear==NULL)
  {
   printf("\nUnderflow!!!");
  }
@@ -74,7 +73,7 @@ void display()						//function to print the elements of the queue
 
 void main()
 {
-int i,x,pos,ch; 
+int i,x,pos,ch;
 
 while(1)
 {
@@ -98,7 +97,9 @@ case 1:
 case 2:
 	{
 	 printf("\n2. Delete from the queue");
-	 printf("%d",dequeue());
+	 x=dequeue();
+	 if(x!=0)
+	  printf("\nDeleted element:%d",x);
 	 break;
 	}
 case 3:
