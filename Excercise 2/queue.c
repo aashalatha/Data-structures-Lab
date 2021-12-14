@@ -11,7 +11,7 @@ struct node
 	};
 struct node *front=NULL,*rear=NULL,*temp;
 
-void enqueue(int x)					//function to insert the element to the circular queue
+void enqueue(int x)					//function to insert the element to the queue
 {
  struct node *new=(struct node *)malloc(sizeof(struct node));
  new->data=x;
@@ -28,7 +28,7 @@ void enqueue(int x)					//function to insert the element to the circular queue
  printf("\nInserted!!!");
 }
 
-int dequeue()						//function to delete the element to the circular queue
+int dequeue()						//function to delete the element to the queue
 {
  int item;
  temp=front;
@@ -52,7 +52,7 @@ int dequeue()						//function to delete the element to the circular queue
  }
 }
 
-void display()						//function to print the elements of the circular queue
+void display()						//function to print the elements of the queue
 {
  temp=front;
  if(front==NULL && rear==NULL)
