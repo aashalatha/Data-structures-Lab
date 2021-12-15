@@ -101,7 +101,7 @@ case 2:
 	 printf("\n2. Delete from the circular queue");
 	 x=dequeue();
 	 if(x!=0)
-	  printf("Deleted element:%d",x);
+	  printf("\nDeleted element:%d",x);
 	 break;
 	}
 case 3:
